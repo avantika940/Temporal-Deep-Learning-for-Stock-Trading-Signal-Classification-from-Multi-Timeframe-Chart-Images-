@@ -1,0 +1,67 @@
+{
+  "experiment": "Hybrid BiLSTM - Cross-Class Temporal Timeline (seq_len=10)",
+  "date": "2026-03-21",
+  "model": "HybridBiLSTM",
+  "dataset": {
+    "source": "Adani_MTF_Images_224x224",
+    "construction": "Cross-class global timeline (images merged & sorted by numeric ID, sliding window label=last frame class)",
+    "total_sequences": 1737,
+    "sequence_length": 10,
+    "mixed_class_sequences": 890,
+    "mixed_class_pct": 51.2,
+    "same_class_sequences": 847,
+    "same_class_pct": 48.8,
+    "train_sequences": 1389,
+    "val_sequences": 348,
+    "class_distribution": {
+      "BUY": 576,
+      "HOLD": 586,
+      "SELL": 575
+    }
+  },
+  "model_config": {
+    "vit_model": "google/vit-base-patch16-224-in21k",
+    "vit_dim": 768,
+    "freeze_vit": true,
+    "hidden_dim": 256,
+    "num_lstm_layers": 3,
+    "bidirectional": true,
+    "attention_heads": 8,
+    "total_parameters": 93224451,
+    "trainable_parameters": 6835203,
+    "frozen_parameters": 86389248
+  },
+  "training_config": {
+    "batch_size": 16,
+    "optimizer": "adamw",
+    "learning_rate": 0.0001,
+    "weight_decay": 1e-5,
+    "scheduler": "reduce_on_plateau",
+    "gradient_clip": 1.0,
+    "label_smoothing": 0.1,
+    "lstm_dropout": 0.3,
+    "classifier_dropout": 0.3,
+    "early_stopping_patience": 5
+  },
+  "training_history": [
+    {"epoch": 1, "train_loss": 0.9992, "train_acc": 47.08, "val_loss": 0.9755, "val_acc": 56.03},
+    {"epoch": 2, "train_loss": 0.9527, "train_acc": 54.14, "val_loss": 0.9116, "val_acc": 58.33},
+    {"epoch": 3, "train_loss": 0.8783, "train_acc": 60.91, "val_loss": 0.8952, "val_acc": 59.48},
+    {"epoch": 4, "train_loss": 0.7446, "train_acc": 73.43, "val_loss": 0.8062, "val_acc": 66.95},
+    {"epoch": 5, "train_loss": 0.6438, "train_acc": 79.63, "val_loss": 0.7276, "val_acc": 75.57}
+  ],
+  "final_result": {
+    "best_epoch": 5,
+    "best_val_accuracy": 75.57,
+    "best_val_loss": 0.7276,
+    "train_accuracy_at_best": 79.63,
+    "checkpoint": "final_hybrid_bilstm_seq10_epoch5_75.57acc.pth"
+  },
+  "comparison": {
+    "old_seq3_same_class_accuracy": 91.38,
+    "new_seq10_cross_class_accuracy": 75.57,
+    "step4_temporal_transformer_baseline": 61.21,
+    "target_realistic_range": "70-74%",
+    "notes": "Cross-class timeline construction produces genuinely hard sequences. 51.2% of sequences span multiple market states, forcing the model to learn real temporal transitions rather than trivially memorizing same-class patterns."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "model_type": "attention",
+  "best_val_acc": 55.45977011494253,
+  "total_epochs": 5,
+  "total_time_minutes": 31.074165562788647,
+  "final_train_acc": 57.8113750899928,
+  "final_val_acc": 55.45977011494253,
+  "config": {
+    "MODEL_TYPE": "attention",
+    "SEQUENCE_LENGTH": 10,
+    "NUM_EPOCHS": 5,
+    "EARLY_STOPPING": false,
+    "DEVICE": "cuda"
+  },
+  "timestamp": "2026-03-22 00:56:37"
+}

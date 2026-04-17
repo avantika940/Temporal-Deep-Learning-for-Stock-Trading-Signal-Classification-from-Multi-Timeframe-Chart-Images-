@@ -1,0 +1,58 @@
+{
+  "rgb": {
+    "intra_class_distance_mean": 3.048415762478377,
+    "intra_class_distance_std": 0.79926547897236,
+    "inter_class_distance_mean": 0.7706781029701233,
+    "inter_class_distance_std": 0.4322367012500763,
+    "separability_ratio": 0.2528126617294349,
+    "silhouette_score": -0.004781824070960283,
+    "per_class": {
+      "BUY": {
+        "count": 585,
+        "mean_norm": 5.671726226806641,
+        "std_norm": 0.10212232917547226
+      },
+      "HOLD": {
+        "count": 586,
+        "mean_norm": 5.656456470489502,
+        "std_norm": 0.11381818354129791
+      },
+      "SELL": {
+        "count": 575,
+        "mean_norm": 5.64336633682251,
+        "std_norm": 0.11442190408706665
+      }
+    }
+  },
+  "grayscale": {
+    "intra_class_distance_mean": 3.112736710010017,
+    "intra_class_distance_std": 1.0127963353873906,
+    "inter_class_distance_mean": 0.9614830017089844,
+    "inter_class_distance_std": 0.5787466168403625,
+    "separability_ratio": 0.30888671008281016,
+    "silhouette_score": -0.005330454558134079,
+    "per_class": {
+      "BUY": {
+        "count": 585,
+        "mean_norm": 5.3914713859558105,
+        "std_norm": 0.16481457650661469
+      },
+      "HOLD": {
+        "count": 586,
+        "mean_norm": 5.366396427154541,
+        "std_norm": 0.1690063625574112
+      },
+      "SELL": {
+        "count": 575,
+        "mean_norm": 5.310641288757324,
+        "std_norm": 0.1895797848701477
+      }
+    }
+  },
+  "winner": {
+    "by_separability": "Grayscale",
+    "by_silhouette": "RGB",
+    "separability_diff": -0.05607404835337526,
+    "silhouette_diff": 0.0005486304871737957
+  }
+}

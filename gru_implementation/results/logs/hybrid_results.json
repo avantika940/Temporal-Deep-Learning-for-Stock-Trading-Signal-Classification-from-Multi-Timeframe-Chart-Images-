@@ -1,0 +1,16 @@
+{
+  "model_type": "hybrid",
+  "best_val_acc": 72.70114942528735,
+  "total_epochs": 5,
+  "total_time_minutes": 17.39371703863144,
+  "final_train_acc": 72.71418286537077,
+  "final_val_acc": 72.70114942528735,
+  "config": {
+    "MODEL_TYPE": "hybrid",
+    "SEQUENCE_LENGTH": 10,
+    "NUM_EPOCHS": 5,
+    "EARLY_STOPPING": false,
+    "DEVICE": "cuda"
+  },
+  "timestamp": "2026-03-30 01:34:56"
+}

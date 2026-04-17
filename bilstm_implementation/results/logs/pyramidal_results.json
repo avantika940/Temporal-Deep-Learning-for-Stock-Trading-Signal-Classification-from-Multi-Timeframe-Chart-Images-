@@ -1,0 +1,16 @@
+{
+  "model_type": "pyramidal",
+  "best_val_acc": 56.89655172413793,
+  "total_epochs": 5,
+  "total_time_minutes": 31.534085098902384,
+  "final_train_acc": 59.467242620590355,
+  "final_val_acc": 56.89655172413793,
+  "config": {
+    "MODEL_TYPE": "pyramidal",
+    "SEQUENCE_LENGTH": 10,
+    "NUM_EPOCHS": 5,
+    "EARLY_STOPPING": false,
+    "DEVICE": "cuda"
+  },
+  "timestamp": "2026-03-22 02:40:43"
+}

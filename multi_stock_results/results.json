@@ -1,0 +1,153 @@
+{
+  "run_date": "2026-04-16T00:15:00.000000",
+  "device": "cuda",
+  "epochs": 80,
+  "split": {
+    "train": 0.64,
+    "val": 0.16,
+    "test": 0.2
+  },
+  "stocks": 4,
+  "results": {
+    "Apollo MTF": {
+      "HybridBiGRU": {
+        "model": "HybridBiGRU",
+        "val_acc": 64.89,
+        "test_acc": 57.7,
+        "precision": 0.5793,
+        "recall": 0.577,
+        "f1": 0.5437,
+        "best_epoch": 1,
+        "time_min": 2.86
+      },
+      "HybridBiLSTM": {
+        "model": "HybridBiLSTM",
+        "val_acc": 59.16,
+        "test_acc": 58.31,
+        "precision": 0.5369,
+        "recall": 0.5831,
+        "f1": 0.52,
+        "best_epoch": 2,
+        "time_min": 3.12
+      },
+      "ensemble": {
+        "Ensemble_Soft": {
+          "test_acc": 65.56,
+          "precision": 0.6633,
+          "recall": 0.6556,
+          "f1": 0.6105
+        },
+        "Ensemble_Weighted": {
+          "test_acc": 65.56,
+          "precision": 0.6633,
+          "recall": 0.6556,
+          "f1": 0.6105
+        },
+        "Ensemble_Hard": {
+          "test_acc": 65.56,
+          "precision": 0.6633,
+          "recall": 0.6556,
+          "f1": 0.6105
+        },
+        "best_ensemble": "Soft",
+        "best_test_acc": 65.56
+      }
+    },
+    "MARUTI MTF": {
+      "HybridBiGRU": {
+        "model": "HybridBiGRU",
+        "val_acc": 80.7,
+        "test_acc": 57.54,
+        "precision": 0.5702,
+        "recall": 0.5754,
+        "f1": 0.5725,
+        "best_epoch": 22,
+        "time_min": 2.96
+      },
+      "HybridBiLSTM": {
+        "model": "HybridBiLSTM",
+        "val_acc": 79.3,
+        "test_acc": 64.8,
+        "precision": 0.6321,
+        "recall": 0.648,
+        "f1": 0.5796,
+        "best_epoch": 24,
+        "time_min": 3.02
+      },
+      "ensemble": {
+        "Ensemble_Soft": {
+          "test_acc": 58.66,
+          "precision": 0.5586,
+          "recall": 0.5866,
+          "f1": 0.564
+        },
+        "Ensemble_Weighted": {
+          "test_acc": 58.66,
+          "precision": 0.5586,
+          "recall": 0.5866,
+          "f1": 0.564
+        },
+        "Ensemble_Hard": {
+          "test_acc": 58.66,
+          "precision": 0.5586,
+          "recall": 0.5866,
+          "f1": 0.564
+        },
+        "best_ensemble": "Soft",
+        "best_test_acc": 58.66
+      }
+    },
+    "COAL_India_MTF": {
+      "HybridBiGRU": {
+        "model": "HybridBiGRU",
+        "val_acc": 55.41,
+        "test_acc": 50.0,
+        "precision": 0.4549,
+        "recall": 0.5,
+        "f1": 0.4632,
+        "best_epoch": 46,
+        "time_min": 22.6
+      },
+      "HybridBiLSTM": {
+        "model": "HybridBiLSTM",
+        "val_acc": 51.17,
+        "test_acc": 56.52,
+        "precision": 0.4845,
+        "recall": 0.5652,
+        "f1": 0.5034,
+        "best_epoch": 29,
+        "time_min": 39.81
+      }
+    },
+    "HCL_MTF": {
+      "HybridBiGRU": {
+        "model": "HybridBiGRU",
+        "val_acc": 62.34,
+        "test_acc": 58.42,
+        "precision": 0.5655,
+        "recall": 0.5842,
+        "f1": 0.5723,
+        "best_epoch": 12,
+        "time_min": 21.56
+      },
+      "HybridBiLSTM": {
+        "model": "HybridBiLSTM",
+        "val_acc": 65.58,
+        "test_acc": 57.43,
+        "precision": 0.5535,
+        "recall": 0.5743,
+        "f1": 0.5615,
+        "best_epoch": 16,
+        "time_min": 36.38
+      }
+    }
+  },
+  "summary": {
+    "bigru_val_avg": 65.84,
+    "bilstm_val_avg": 63.8,
+    "bigru_test_avg": 55.91,
+    "bilstm_test_avg": 59.27,
+    "overall_val_avg": 64.82,
+    "overall_test_avg": 57.59
+  }
+}

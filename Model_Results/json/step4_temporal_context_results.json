@@ -1,0 +1,115 @@
+{
+  "step": 4,
+  "method": "Temporal Context",
+  "sequence_length": 3,
+  "lstm": {
+    "accuracy": 60.63218390804598,
+    "best_val_accuracy": 61.7816091954023,
+    "classification_report": {
+      "BUY": {
+        "precision": 0.5446428571428571,
+        "recall": 0.5213675213675214,
+        "f1-score": 0.5327510917030568,
+        "support": 117.0
+      },
+      "HOLD": {
+        "precision": 0.49473684210526314,
+        "recall": 0.4017094017094017,
+        "f1-score": 0.44339622641509435,
+        "support": 117.0
+      },
+      "SELL": {
+        "precision": 0.7304964539007093,
+        "recall": 0.9035087719298246,
+        "f1-score": 0.807843137254902,
+        "support": 114.0
+      },
+      "accuracy": 0.6063218390804598,
+      "macro avg": {
+        "precision": 0.5899587177162765,
+        "recall": 0.6088618983355826,
+        "f1-score": 0.5946634851243511,
+        "support": 348.0
+      },
+      "weighted avg": {
+        "precision": 0.58874718550779,
+        "recall": 0.6063218390804598,
+        "f1-score": 0.592825729502536,
+        "support": 348.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        61,
+        37,
+        19
+      ],
+      [
+        51,
+        47,
+        19
+      ],
+      [
+        0,
+        11,
+        103
+      ]
+    ]
+  },
+  "transformer": {
+    "accuracy": 61.206896551724135,
+    "best_val_accuracy": 61.206896551724135,
+    "classification_report": {
+      "BUY": {
+        "precision": 0.5702479338842975,
+        "recall": 0.5897435897435898,
+        "f1-score": 0.5798319327731093,
+        "support": 117.0
+      },
+      "HOLD": {
+        "precision": 0.5194805194805194,
+        "recall": 0.3418803418803419,
+        "f1-score": 0.41237113402061853,
+        "support": 117.0
+      },
+      "SELL": {
+        "precision": 0.6933333333333334,
+        "recall": 0.9122807017543859,
+        "f1-score": 0.7878787878787878,
+        "support": 114.0
+      },
+      "accuracy": 0.6120689655172413,
+      "macro avg": {
+        "precision": 0.5943539288993834,
+        "recall": 0.6146348777927725,
+        "f1-score": 0.5933606182241719,
+        "support": 348.0
+      },
+      "weighted avg": {
+        "precision": 0.5935006581715045,
+        "recall": 0.6120689655172413,
+        "f1-score": 0.5916837374512873,
+        "support": 348.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        69,
+        27,
+        21
+      ],
+      [
+        52,
+        40,
+        25
+      ],
+      [
+        0,
+        10,
+        104
+      ]
+    ]
+  },
+  "best_model": "Transformer",
+  "best_accuracy": 61.206896551724135
+}

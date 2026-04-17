@@ -1,0 +1,13 @@
+{
+  "model_type": "pyramidal",
+  "best_val_acc": 49.712643678160916,
+  "total_epochs": 1,
+  "total_time_minutes": null,
+  "final_train_acc": null,
+  "final_val_acc": 49.712643678160916,
+  "config": {
+    "MODEL_TYPE": "pyramidal",
+    "SEQUENCE_LENGTH": 10
+  },
+  "timestamp": "2026-03-30 01:55:46"
+}

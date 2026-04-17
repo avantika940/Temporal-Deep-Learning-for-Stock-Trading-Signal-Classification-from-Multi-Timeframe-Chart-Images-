@@ -1,0 +1,16 @@
+{
+  "model_type": "deep",
+  "best_val_acc": 50.57471264367816,
+  "total_epochs": 5,
+  "total_time_minutes": 23.03449736038844,
+  "final_train_acc": 52.55579553635709,
+  "final_val_acc": 49.42528735632184,
+  "config": {
+    "MODEL_TYPE": "deep",
+    "SEQUENCE_LENGTH": 10,
+    "NUM_EPOCHS": 5,
+    "EARLY_STOPPING": false,
+    "DEVICE": "cuda"
+  },
+  "timestamp": "2026-03-22 00:23:42"
+}

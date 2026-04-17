@@ -1,0 +1,9 @@
+{
+  "run_date": "2026-04-09T20:45:37.977892",
+  "device": "cuda",
+  "test_stock": "Bajaj_Finance",
+  "epochs": 200,
+  "early_stop": 15,
+  "target_acc": 67.0,
+  "achieved_acc": 54.48,
+  "target_met": 

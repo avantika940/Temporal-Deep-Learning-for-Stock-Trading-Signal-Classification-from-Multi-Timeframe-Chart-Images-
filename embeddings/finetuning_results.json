@@ -1,0 +1,125 @@
+{
+  "adani_best_val_acc": 0.7183908045977011,
+  "adani_test_acc": 0.5795454545454546,
+  "before_silhouette": {
+    "vit_finetuned (old)": -0.002392047783359885,
+    "vit_grayscale": -0.005419488064944744,
+    "vit_rgb": -0.0035543725825846195
+  },
+  "after_silhouette": {
+    "Adani": -0.005069360136985779,
+    "Bajaj_Finance": -0.014391932636499405,
+    "BPCL": -0.019324902445077896,
+    "Britannia": -0.019194280728697777,
+    "COAL_India": -0.01785077340900898,
+    "HCL": -0.0027746064588427544,
+    "HDFC": -0.013342167250812054,
+    "Hindustan_Unilever": -0.014396428130567074,
+    "ICICI_Bank": -0.01565881073474884,
+    "Indusind_Bank": -0.0181519016623497,
+    "KOTAK_BANK": -0.01910817064344883
+  },
+  "per_stock_info": {
+    "Adani": {
+      "n_total": 1746,
+      "n_buy": 585,
+      "n_hold": 586,
+      "n_sell": 575,
+      "emb_dim": 768,
+      "silhouette": -0.005069360136985779,
+      "saved_to": "d:\\MTECH\\embeddings\\Adani_finetuned.npz"
+    },
+    "Bajaj_Finance": {
+      "n_total": 3070,
+      "n_buy": 954,
+      "n_hold": 1075,
+      "n_sell": 1041,
+      "emb_dim": 768,
+      "silhouette": -0.014391932636499405,
+      "saved_to": "d:\\MTECH\\embeddings\\Bajaj_Finance_finetuned.npz"
+    },
+    "BPCL": {
+      "n_total": 3227,
+      "n_buy": 1019,
+      "n_hold": 1136,
+      "n_sell": 1072,
+      "emb_dim": 768,
+      "silhouette": -0.019324902445077896,
+      "saved_to": "d:\\MTECH\\embeddings\\BPCL_finetuned.npz"
+    },
+    "Britannia": {
+      "n_total": 3360,
+      "n_buy": 1075,
+      "n_hold": 1176,
+      "n_sell": 1109,
+      "emb_dim": 768,
+      "silhouette": -0.019194280728697777,
+      "saved_to": "d:\\MTECH\\embeddings\\Britannia_finetuned.npz"
+    },
+    "COAL_India": {
+      "n_total": 3483,
+      "n_buy": 1136,
+      "n_hold": 1226,
+      "n_sell": 1121,
+      "emb_dim": 768,
+      "silhouette": -0.01785077340900898,
+      "saved_to": "d:\\MTECH\\embeddings\\COAL_India_finetuned.npz"
+    },
+    "HCL": {
+      "n_total": 1785,
+      "n_buy": 598,
+      "n_hold": 599,
+      "n_sell": 588,
+      "emb_dim": 768,
+      "silhouette": -0.0027746064588427544,
+      "saved_to": "d:\\MTECH\\embeddings\\HCL_finetuned.npz"
+    },
+    "HDFC": {
+      "n_total": 2420,
+      "n_buy": 773,
+      "n_hold": 795,
+      "n_sell": 852,
+      "emb_dim": 768,
+      "silhouette": -0.013342167250812054,
+      "saved_to": "d:\\MTECH\\embeddings\\HDFC_finetuned.npz"
+    },
+    "Hindustan_Unilever": {
+      "n_total": 2852,
+      "n_buy": 908,
+      "n_hold": 963,
+      "n_sell": 981,
+      "emb_dim": 768,
+      "silhouette": -0.014396428130567074,
+      "saved_to": "d:\\MTECH\\embeddings\\Hindustan_Unilever_finetuned.npz"
+    },
+    "ICICI_Bank": {
+      "n_total": 3098,
+      "n_buy": 995,
+      "n_hold": 1077,
+      "n_sell": 1026,
+      "emb_dim": 768,
+      "silhouette": -0.01565881073474884,
+      "saved_to": "d:\\MTECH\\embeddings\\ICICI_Bank_finetuned.npz"
+    },
+    "Indusind_Bank": {
+      "n_total": 3251,
+      "n_buy": 1050,
+      "n_hold": 1143,
+      "n_sell": 1058,
+      "emb_dim": 768,
+      "silhouette": -0.0181519016623497,
+      "saved_to": "d:\\MTECH\\embeddings\\Indusind_Bank_finetuned.npz"
+    },
+    "KOTAK_BANK": {
+      "n_total": 3366,
+      "n_buy": 1106,
+      "n_hold": 1179,
+      "n_sell": 1081,
+      "emb_dim": 768,
+      "silhouette": -0.01910817064344883,
+      "saved_to": "d:\\MTECH\\embeddings\\KOTAK_BANK_finetuned.npz"
+    }
+  },
+  "mean_before_silhouette": -0.0037886361436297498,
+  "mean_after_silhouette": -0.014478484930639917
+}

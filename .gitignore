@@ -1,0 +1,136 @@
+# Git Configuration
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project specific - Data directories (exclude large data)
+data/
+data_multi_processed/
+datasets/
+
+# Embeddings - exclude large binary files but keep directory structure
+embeddings/*.npz
+embeddings/*.pth
+
+# Keep results directories (they should be pushed)
+# Model_Results/ - KEEP
+# multi_stock_results/ - KEEP
+# bilstm_implementation/results/ - KEEP
+# gru_implementation/results/ - KEEP
+# scripts/ - KEEP
+
+# Log files
+*.log
+*.out
+adani_run.log
+finetune_run.log
+pipeline_run_output.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Large model files
+*.pth
+*.h5
+*.pkl
+*.joblib
+
+# Exclude ALL markdown files except README.md
+*.md
+!README.md
+
+# OS generated files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Media files (if you have many large images)
+# Uncomment if needed
+# *.png
+# *.jpg
+# *.jpeg
+
+# Keep important config files
+!requirements.txt
+!README.md
+!LICENSE
+!TECHNICAL_DOCS.md

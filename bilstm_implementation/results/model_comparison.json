@@ -1,0 +1,89 @@
+{
+  "results": {
+    "deep": {
+      "best_val_acc": 62.93103448275862,
+      "final_val_acc": 57.47126436781609,
+      "precision": 60.30623973727421,
+      "recall": 57.47126436781609,
+      "f1_score": 57.06506768402292,
+      "training_time_minutes": 25.236823149522145,
+      "total_epochs": 20,
+      "config": {
+        "hidden_dim": 256,
+        "num_layers": 3,
+        "sequence_length": 3,
+        "batch_size": 16,
+        "learning_rate": 0.0001
+      }
+    },
+    "attention": {
+      "best_val_acc": 67.52873563218391,
+      "final_val_acc": 67.52873563218391,
+      "precision": 68.93321470312203,
+      "recall": 67.52873563218391,
+      "f1_score": 67.15185411217952,
+      "training_time_minutes": 25.041732903321584,
+      "total_epochs": 20,
+      "config": {
+        "hidden_dim": 256,
+        "num_layers": 2,
+        "sequence_length": 3,
+        "batch_size": 16,
+        "learning_rate": 0.0001
+      }
+    },
+    "residual": {
+      "best_val_acc": 73.29885057471265,
+      "final_val_acc": 73.29885057471265,
+      "precision": 73.86933246058709,
+      "recall": 73.29885057471265,
+      "f1_score": 73.38248183128005,
+      "training_time_minutes": 25.160379830996195,
+      "total_epochs": 20,
+      "config": {
+        "hidden_dim": 256,
+        "num_layers": 3,
+        "sequence_length": 3,
+        "batch_size": 16,
+        "learning_rate": 0.0001
+      }
+    },
+    "hybrid": {
+      "best_val_acc": 71.37931034482759,
+      "final_val_acc": 71.37931034482759,
+      "precision": 71.58280172714817,
+      "recall": 71.37931034482759,
+      "f1_score": 71.2949625925205,
+      "training_time_minutes": 25.82702772219976,
+      "total_epochs": 20,
+      "config": {
+        "hidden_dim": 256,
+        "num_layers": 3,
+        "sequence_length": 3,
+        "batch_size": 16,
+        "learning_rate": 0.0001
+      }
+    },
+    "pyramidal": {
+      "best_val_acc": 68.10344827586206,
+      "final_val_acc": 68.10344827586206,
+      "precision": 72.56078445111199,
+      "recall": 68.10344827586206,
+      "f1_score": 67.929303283692,
+      "training_time_minutes": 25.517504966259004,
+      "total_epochs": 20,
+      "config": {
+        "hidden_dim": 256,
+        "num_layers": 3,
+        "sequence_length": 3,
+        "batch_size": 16,
+        "learning_rate": 0.0001
+      }
+    }
+  },
+  "best_model": "hybrid",
+  "best_accuracy": 71.37931034482759,
+  "step4_baseline": 61.21,
+  "improvement": 30.169310344827586,
+  "timestamp": "2026-03-04 19:45:05"
+}

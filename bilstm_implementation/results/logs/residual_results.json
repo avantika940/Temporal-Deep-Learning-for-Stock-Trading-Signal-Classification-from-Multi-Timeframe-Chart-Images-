@@ -1,0 +1,16 @@
+{
+  "model_type": "residual",
+  "best_val_acc": 58.9080459770115,
+  "total_epochs": 5,
+  "total_time_minutes": 31.09169686237971,
+  "final_train_acc": 59.755219582433405,
+  "final_val_acc": 58.9080459770115,
+  "config": {
+    "MODEL_TYPE": "residual",
+    "SEQUENCE_LENGTH": 10,
+    "NUM_EPOCHS": 5,
+    "EARLY_STOPPING": false,
+    "DEVICE": "cuda"
+  },
+  "timestamp": "2026-03-22 01:31:09"
+}
