@@ -1,23 +1,21 @@
 """
-Configuration file for BiGRU implementation
+Fixed Configuration file for GRU implementation - No Data Leakage
 
-Contains all hyperparameters and settings for training and evaluation.
-Mirrors the BiLSTM config but tuned for GRU (fewer gates → can afford
-slightly larger hidden dims or more epochs for the same wall-clock budget).
+Contains conservative hyperparameters and settings to prevent overfitting
+and ensure realistic results for financial time series prediction.
 """
 
 import os
 from pathlib import Path
 
 
-class Config:
-    """Configuration class for BiGRU models"""
+class FixedConfig:
+    """Fixed configuration class for GRU models with realistic expectations"""
 
     # ========== Paths ==========
-    # Dynamically determine project root (parent of gru_implementation folder)
-    BASE_DIR = Path(__file__).parent.parent  # d:\MTECH (or wherever the project is)
+    BASE_DIR = Path(__file__).parent.parent  # d:\MTECH
     DATA_DIR = BASE_DIR / "data" / "Adani_MTF_Images_224x224"
-    RESULTS_DIR = Path(__file__).parent / "results"
+    RESULTS_DIR = Path(__file__).parent / "results_fixed"
     MODELS_DIR = RESULTS_DIR / "models"
     LOGS_DIR = RESULTS_DIR / "logs"
     VIZ_DIR = RESULTS_DIR / "visualizations"
@@ -27,65 +25,55 @@ class Config:
         dir_path.mkdir(parents=True, exist_ok=True)
 
     # ========== Dataset Settings ==========
-    SEQUENCE_LENGTH = 10          # Cross-class timeline window size
+    SEQUENCE_LENGTH = 10         # As requested by mentor - using 10 images for better temporal context
     IMAGE_SIZE = 224
-    TRAIN_SPLIT = 0.8
-    VAL_SPLIT = 0.2
     NUM_CLASSES = 3
     CLASS_NAMES = ['BUY', 'HOLD', 'SELL']
 
     # ========== Model Architecture ==========
-    MODEL_TYPE = 'hybrid'         # deep | attention | residual | hybrid | pyramidal
+    MODEL_TYPE = 'deep'          # Start with simplest model
 
-    # ViT settings (frozen feature extractor — identical to BiLSTM baseline)
+    # ViT settings (frozen feature extractor)
     VIT_MODEL = 'google/vit-base-patch16-224-in21k'
     VIT_DIM = 768
     FREEZE_VIT = True
 
-    # BiGRU settings  (GRU has no cell state → ~33 % fewer params than same-size LSTM)
-    HIDDEN_DIM = 256
-    NUM_GRU_LAYERS = 3
+    # GRU settings (conservative sizing)
+    HIDDEN_DIM = 128             # Reduced from 256
+    NUM_GRU_LAYERS = 2           # Reduced from 3
     BIDIRECTIONAL = True
-    GRU_DROPOUT = 0.3
+    GRU_DROPOUT = 0.5            # Increased from 0.3
 
-    # Attention settings (for attention-based models)
-    ATTENTION_HEADS = 8
-    ATTENTION_DROPOUT = 0.2
+    # Attention settings
+    ATTENTION_HEADS = 4          # Reduced from 8
+    ATTENTION_DROPOUT = 0.3
 
     # Residual settings
     USE_LAYER_NORM = True
-    RESIDUAL_DROPOUT = 0.2
+    RESIDUAL_DROPOUT = 0.3
 
-    # Classifier settings
-    CLASSIFIER_HIDDEN_DIM = 256
-    CLASSIFIER_DROPOUT = 0.3
+    # Classifier settings (more regularization)
+    CLASSIFIER_HIDDEN_DIM = 128  # Reduced from 256
+    CLASSIFIER_DROPOUT = 0.5     # Increased from 0.3
 
     # ========== Training Settings ==========
-    BATCH_SIZE = 8
-    NUM_EPOCHS = 20
-    LEARNING_RATE = 1e-4
-    WEIGHT_DECAY = 1e-5
+    BATCH_SIZE = 16              # Increased for stability
+    NUM_EPOCHS = 15              # Reduced from 20
+    LEARNING_RATE = 5e-5         # Reduced from 1e-4
+    WEIGHT_DECAY = 1e-4          # Increased regularization
 
-    OPTIMIZER = 'adamw'           # adam | adamw | sgd
+    OPTIMIZER = 'adamw'
     BETAS = (0.9, 0.999)
-    MOMENTUM = 0.9                # For SGD
 
     # Learning rate scheduler
     USE_SCHEDULER = True
-    SCHEDULER_TYPE = 'reduce_on_plateau'   # reduce_on_plateau | cosine | step
+    SCHEDULER_TYPE = 'reduce_on_plateau'
     SCHEDULER_FACTOR = 0.5
     SCHEDULER_PATIENCE = 3
     SCHEDULER_MIN_LR = 1e-7
 
-    T_MAX = 10
-    ETA_MIN = 1e-6
-    STEP_SIZE = 5
-    GAMMA = 0.5
-
     # ========== Regularization ==========
-    GRADIENT_CLIP = 1.0
-    USE_MIXUP = False
-    MIXUP_ALPHA = 0.2
+    GRADIENT_CLIP = 0.5          # Reduced from 1.0
     LABEL_SMOOTHING = 0.1
 
     # ========== Early Stopping ==========
@@ -94,29 +82,27 @@ class Config:
     EARLY_STOPPING_MIN_DELTA = 0.001
 
     # ========== Data Loading ==========
-    NUM_WORKERS = 0               # 0 for Windows compatibility
+    NUM_WORKERS = 0
     PIN_MEMORY = True
     PERSISTENT_WORKERS = False
+    EVAL_BATCH_SIZE = 32
 
-    # ========== Logging ==========
+    # ========== Logging & Saving ==========
     LOG_INTERVAL = 10
     SAVE_BEST_ONLY = True
     VERBOSE = True
-
-    # ========== Evaluation ==========
-    EVAL_BATCH_SIZE = 16
-    SAVE_CONFUSION_MATRIX = True
-    SAVE_TRAINING_CURVES = True
-    SAVE_CLASSIFICATION_REPORT = True
 
     # ========== Reproducibility ==========
     RANDOM_SEED = 42
     DETERMINISTIC = True
 
-    # ========== Device ==========
-    DEVICE = 'cuda'
+    # ========== Realistic Expectations ==========
+    EXPECTED_ACCURACY_RANGE = (55, 65)      # Realistic for financial data
+    SUSPICIOUS_ACCURACY_THRESHOLD = 70      # Flag if exceeded
+    RANDOM_BASELINE = 33.33                 # 3-class random
 
     def __init__(self, **kwargs):
+        """Initialize config and override with any provided kwargs"""
         for key, value in kwargs.items():
             if hasattr(self, key):
                 setattr(self, key, value)
@@ -124,7 +110,7 @@ class Config:
                 print(f"Warning: Unknown config parameter '{key}'")
 
     def to_dict(self):
-        """Convert config to dictionary (JSON-serialisable)"""
+        """Convert config to dictionary"""
         result = {}
         for key, value in self.__dict__.items():
             if not key.startswith('_'):
@@ -134,78 +120,74 @@ class Config:
                     result[key] = value
         return result
 
+    def validate_results(self, accuracy: float) -> bool:
+        """
+        Validate if results are realistic for financial time series
+        
+        Args:
+            accuracy: Validation/test accuracy to check
+            
+        Returns:
+            True if realistic, False if suspicious
+        """
+        print(f"\nResult Validation:")
+        print(f"  Accuracy: {accuracy:.2f}%")
+        print(f"  Expected range: {self.EXPECTED_ACCURACY_RANGE[0]}-{self.EXPECTED_ACCURACY_RANGE[1]}%")
+        print(f"  Random baseline: {self.RANDOM_BASELINE:.1f}%")
+        
+        if accuracy > self.SUSPICIOUS_ACCURACY_THRESHOLD:
+            print(f"  ⚠️  SUSPICIOUS: Accuracy {accuracy:.2f}% > {self.SUSPICIOUS_ACCURACY_THRESHOLD}%")
+            print(f"     This may indicate remaining data leakage!")
+            return False
+        elif accuracy < self.RANDOM_BASELINE + 5:
+            print(f"  ⚠️  TOO LOW: Accuracy {accuracy:.2f}% barely above random")
+            print(f"     Model may not be learning properly")
+            return False
+        elif self.EXPECTED_ACCURACY_RANGE[0] <= accuracy <= self.EXPECTED_ACCURACY_RANGE[1]:
+            print(f"  ✅ REALISTIC: Accuracy in expected range")
+            return True
+        else:
+            print(f"  ⚠️  MARGINAL: Accuracy outside typical range but not impossible")
+            return True
+
     def validate_paths(self):
-        """Validate that required paths exist and provide helpful error messages"""
+        """Validate that required paths exist"""
         if not self.DATA_DIR.exists():
             raise FileNotFoundError(
-                f"\n{'='*80}\n"
-                f"ERROR: Data directory not found!\n"
-                f"Expected: {self.DATA_DIR}\n"
-                f"{'='*80}\n"
-                f"Please ensure your data is placed in the correct location.\n"
-                f"Current BASE_DIR: {self.BASE_DIR}\n"
-                f"If your project is in a different location, the paths will\n"
-                f"automatically adjust based on where this script is run from.\n"
-                f"{'='*80}"
+                f"Data directory not found: {self.DATA_DIR}\n"
+                f"Please ensure the Adani MTF dataset exists at this location."
             )
         
-        # Check if data directory has the expected structure
-        expected_classes = ['BUY', 'HOLD', 'SELL']
-        missing_classes = [cls for cls in expected_classes if not (self.DATA_DIR / cls).exists()]
-        if missing_classes:
-            raise FileNotFoundError(
-                f"\n{'='*80}\n"
-                f"ERROR: Missing class folders in data directory!\n"
-                f"Missing: {missing_classes}\n"
-                f"Data directory: {self.DATA_DIR}\n"
-                f"Expected structure:\n"
-                f"  {self.DATA_DIR}/\n"
-                f"    ├── BUY/\n"
-                f"    ├── HOLD/\n"
-                f"    └── SELL/\n"
-                f"{'='*80}"
-            )
-        
-        return True
+        required_folders = ['BUY', 'HOLD', 'SELL']
+        for folder in required_folders:
+            folder_path = self.DATA_DIR / folder
+            if not folder_path.exists():
+                raise FileNotFoundError(
+                    f"Required class folder not found: {folder_path}\n"
+                    f"Dataset should contain BUY, HOLD, and SELL folders."
+                )
 
     def print_config(self):
-        """Print all configuration parameters"""
-        print("\n" + "=" * 80)
-        print("BiGRU CONFIGURATION")
-        print("=" * 80)
-        print(f"\n📁 PATHS:")
-        print(f"  Data Directory: {self.DATA_DIR}")
-        print(f"  Results Directory: {self.RESULTS_DIR}")
-        print(f"\n📊 DATASET:")
-        print(f"  Sequence Length: {self.SEQUENCE_LENGTH}")
-        print(f"  Image Size: {self.IMAGE_SIZE}")
-        print(f"  Classes: {self.NUM_CLASSES} {self.CLASS_NAMES}")
-        print(f"  Train/Val Split: {self.TRAIN_SPLIT}/{self.VAL_SPLIT}")
-        print(f"\n🧠 MODEL:")
-        print(f"  Model Type: {self.MODEL_TYPE}")
-        print(f"  ViT Model: {self.VIT_MODEL} (frozen={self.FREEZE_VIT})")
-        print(f"  Hidden Dim: {self.HIDDEN_DIM}")
-        print(f"  GRU Layers: {self.NUM_GRU_LAYERS}")
-        print(f"  Bidirectional: {self.BIDIRECTIONAL}")
-        print(f"\n⚙️  TRAINING:")
-        print(f"  Epochs: {self.NUM_EPOCHS}")
-        print(f"  Batch Size: {self.BATCH_SIZE}")
-        print(f"  Learning Rate: {self.LEARNING_RATE}")
-        print(f"  Optimizer: {self.OPTIMIZER}")
-        print(f"  Early Stopping: {self.EARLY_STOPPING} (patience={self.EARLY_STOPPING_PATIENCE})")
-        print("=" * 80)
+        """Print configuration summary"""
+        print("=" * 60)
+        print("FIXED GRU CONFIGURATION")
+        print("=" * 60)
+        print(f"Model Type: {self.MODEL_TYPE}")
+        print(f"Sequence Length: {self.SEQUENCE_LENGTH}")
+        print(f"Hidden Dim: {self.HIDDEN_DIM}")
+        print(f"GRU Layers: {self.NUM_GRU_LAYERS}")
+        print(f"Learning Rate: {self.LEARNING_RATE}")
+        print(f"Batch Size: {self.BATCH_SIZE}")
+        print(f"Expected Accuracy: {self.EXPECTED_ACCURACY_RANGE[0]}-{self.EXPECTED_ACCURACY_RANGE[1]}%")
+        print("=" * 60)
 
 
-def get_config(model_type: str) -> Config:
-    """Return a config pre-set for the requested model type."""
-    configs = {
-        'deep':      Config(MODEL_TYPE='deep'),
-        'attention': Config(MODEL_TYPE='attention'),
-        'residual':  Config(MODEL_TYPE='residual'),
-        'hybrid':    Config(MODEL_TYPE='hybrid'),
-        'pyramidal': Config(MODEL_TYPE='pyramidal'),
-    }
-    if model_type not in configs:
-        raise ValueError(f"Unknown model type '{model_type}'. "
-                         f"Choose from: {list(configs.keys())}")
-    return configs[model_type]
+def get_config(**kwargs):
+    """Get configuration instance with optional overrides"""
+    return FixedConfig(**kwargs)
+
+
+if __name__ == "__main__":
+    config = FixedConfig()
+    config.print_config()
+    config.validate_paths()

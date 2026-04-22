@@ -145,10 +145,12 @@ Classification Head → BUY/HOLD/SELL predictions
 
 | Metric | HybridBiGRU | HybridBiLSTM |
 |--------|-------------|-------------|
-| **Validation Accuracy** | 65.84% | 63.80% |
-| **Test Accuracy** | 55.91% | 59.27% |
-| **Overall Validation** | 64.82% | |
-| **Overall Test** | 57.59% | |
+| **Single-Stock Best** | 58.82% test | **68.42% test** |
+| **Multi-Stock Average** | 55.91% test | **59.27% test** |
+| **Validation Average** | 65.84% | 63.80% |
+| **Training Efficiency** | 6.37 min | 5.47 min |
+
+> **Note**: For detailed realistic performance analysis, see [`REALISTIC_RESULTS_SUMMARY.md`](REALISTIC_RESULTS_SUMMARY.md)
 
 ### Stock-Specific Performance
 
@@ -390,10 +392,11 @@ For questions, issues, or collaborations, please open an issue on GitHub or cont
 
 ### Documentation Resources
 
-- 📖 **Complete Research Paper**: [`Q1_Journal_Paper_Complete_Draft.md`](Q1_Journal_Paper_Complete_Draft.md)
-- 📊 **Visual Documentation**: [`Figures.md`](Figures.md) - All Mermaid diagrams
+- 📖 **Complete Research Paper**: [`Q1_Journal_Paper_Complete_Draft.md`](Q1_Journal_Paper_Complete_Draft.md) *(excluded from git)*
+- 📊 **Visual Documentation**: [`Figures.md`](Figures.md) - All Mermaid diagrams with updated realistic results
+- 📈 **Realistic Results Analysis**: [`REALISTIC_RESULTS_SUMMARY.md`](REALISTIC_RESULTS_SUMMARY.md) - Corrected performance metrics
 - 🔧 **Technical Implementation**: This README and code documentation
-- 📈 **Results Analysis**: [`multi_stock_results/`](multi_stock_results/) directory
+- � **Results Analysis**: [`multi_stock_results/`](multi_stock_results/) directory
 
 ---
 

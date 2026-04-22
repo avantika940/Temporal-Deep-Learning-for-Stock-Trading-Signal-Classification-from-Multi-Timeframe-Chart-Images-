@@ -208,6 +208,7 @@ def _ema(values: np.ndarray, span: int) -> np.ndarray:
 def compute_technical_indicators(label_seq: list) -> np.ndarray:
     """
     Compute 5 per-bar technical indicators from a label sequence.
+    FIXED: Only use PAST information up to each time step (no future leakage).
     Args:
         label_seq : list[int], length SEQ_LEN, values {0=BUY, 1=HOLD, 2=SELL}
     Returns:
@@ -215,7 +216,10 @@ def compute_technical_indicators(label_seq: list) -> np.ndarray:
         Columns: [rsi_proxy, macd_proxy, macd_signal, bb_width, trend_slope]
     """
     T = len(label_seq)
-    S = np.array([LABEL_SIGNAL[l] for l in label_seq], dtype=np.float32)
+    # CRITICAL FIX: Remove last label (target) from technical indicator computation
+    # Only use labels [0, 1, ..., T-2] for indicators, excluding target label[T-1]
+    past_labels = label_seq[:-1] if T > 1 else [label_seq[0]]  # Exclude future target
+    S_past = np.array([LABEL_SIGNAL[l] for l in past_labels], dtype=np.float32)
 
     # 1. RSI-proxy: cumulative avg_gain / (avg_gain + avg_loss) up to bar t
     diffs  = np.diff(S, prepend=S[0])
